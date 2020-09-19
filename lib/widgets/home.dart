@@ -20,7 +20,6 @@ class HomeWidget extends StatefulWidget {
 }
 
 class _HomeWidgetState extends State<HomeWidget> {
-  int _counter = 0;
   List<Product> _products = [
     Product(
       id: 1,
@@ -54,11 +53,7 @@ class _HomeWidgetState extends State<HomeWidget> {
     ),
   ];
 
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
+  int _activeProductId = null;
 
   @override
   Widget build(BuildContext context) {
@@ -89,7 +84,11 @@ class _HomeWidgetState extends State<HomeWidget> {
               Container(
                 width: double.infinity,
                 height: 200,
-                //child: CameraWidget(cameras: widget.cameras),
+                /*child: CameraWidget(cameras: widget.cameras, setActiveProductId: (int newProductId) {
+                  setState(() {
+                    _activeProductId = newProductId;
+                  });
+                }),*/
                 child: Text('Camera'),
               ),
               Padding(
@@ -97,7 +96,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                   vertical: 8.0,
                   horizontal: 16.0,
                 ),
-                child: Text('Purchased products', style: GoogleFonts.montserrat(
+                child: Text(_activeProductId == null ? 'Purchased products' : 'More sustainable products', style: GoogleFonts.montserrat(
                   textStyle: TextStyle(
                     color: Color(0xFF000000),
                     fontSize: 24.0,
@@ -133,11 +132,6 @@ class _HomeWidgetState extends State<HomeWidget> {
             ],
           ),
         ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        tooltip: 'Action',
-        child: Icon(Icons.add),
       ),
     );
   }

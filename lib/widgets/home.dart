@@ -94,11 +94,11 @@ class _HomeWidgetState extends State<HomeWidget> {
 
     String productsTitle = '';
 
-    if (DotEnv().env['APP_NAME'] == '1') {
+    if (DotEnv().env['PROFILE_MODE'] == '1') {
       productsTitle = 'More sustainable products';
-    } else if (DotEnv().env['APP_NAME'] == '2') {
+    } else if (DotEnv().env['PROFILE_MODE'] == '2') {
       productsTitle = 'Healthier products';
-    } else if (DotEnv().env['APP_NAME'] == '3') {
+    } else if (DotEnv().env['PROFILE_MODE'] == '3') {
       productsTitle = 'Better deals';
     }
 

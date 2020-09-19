@@ -11,9 +11,8 @@ import 'package:hackzurich2020/widgets/product_notification.dart';
 class CameraWidget extends StatefulWidget {
   final List<CameraDescription> cameras;
   final Function setActiveProductId;
-  final Function findProductByBarcode;
 
-  CameraWidget({ this.cameras, this.setActiveProductId, this.findProductByBarcode });
+  CameraWidget({ this.cameras, this.setActiveProductId });
 
   @override
   _CameraWidgetState createState() => new _CameraWidgetState();
@@ -26,13 +25,7 @@ class _CameraWidgetState extends State<CameraWidget> {
   void initState() {
     super.initState();
     controller = new QRReaderController(widget.cameras[0], ResolutionPreset.high, [CodeFormat.ean13], (dynamic value) {
-      Product product = widget.findProductByBarcode(value);
-      BotToast.showCustomNotification(toastBuilder: (cancel) {
-        return ProductNotificationWidget(
-          product: product,
-        );
-      }, duration: const Duration(seconds: 4));
-      widget.setActiveProductId(product.id);
+      widget.setActiveProductId(value);
       new Future.delayed(const Duration(seconds: 3), controller.startScanning);
     });
     controller.initialize().then((_) {

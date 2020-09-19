@@ -177,21 +177,13 @@ class _HomeWidgetState extends State<HomeWidget> {
     ),
   ];
 
-  int _activeProductId = null;
+  int _activeProductIndex = null;
+  List<Product> _activeProducts = [];
+  String _productsTitle = 'Similar products';
 
   @override
   Widget build(BuildContext context) {
     Wakelock.enable();
-
-    String productsTitle = '';
-
-    if (DotEnv().env['PROFILE_MODE'] == '1') {
-      productsTitle = 'More sustainable products';
-    } else if (DotEnv().env['PROFILE_MODE'] == '2') {
-      productsTitle = 'Healthier products';
-    } else if (DotEnv().env['PROFILE_MODE'] == '3') {
-      productsTitle = 'Better deals';
-    }
 
     List<Widget> content = [
       Column(
@@ -219,15 +211,37 @@ class _HomeWidgetState extends State<HomeWidget> {
             height: 200,
             child: CameraWidget(
               cameras: widget.cameras,
-              setActiveProductId: (int newProductId) {
+              setActiveProductId: (String barcode) {
                 setState(() {
-                  //_activeProductId = newProductId;
-                  _activeProductId = int.parse(DotEnv().env['SCANNED_PRODUCT_ID']);
+                  if (barcode == '7617027064590') {
+                    _productsTitle = 'Better deals';
+                    _activeProductIndex = 7-6;
+
+                    _activeProducts = [
+                      _products[1-1],
+                      _products[8-1],
+                      _products[9-1],
+                    ];
+                  } else if (barcode == '7617500193991') {
+                    _productsTitle = 'Healthier products';
+                    _activeProductIndex = 4-1;
+
+                    _activeProducts = [
+                      _products[5-1],
+                      _products[6-1],
+                    ];
+                  } else {
+                    _productsTitle = 'More sustainable products';
+                    _activeProductIndex = 10-1;
+
+                    _activeProducts = [
+                      _products[11-1],
+                      _products[12-1],
+                      _products[2-1],
+                    ];
+                  }
                 });
               },
-              findProductByBarcode: (String barcode) {
-                return _products[0];
-              }
             ),
             //child: Text('Camera'),
           ),
@@ -236,7 +250,7 @@ class _HomeWidgetState extends State<HomeWidget> {
               vertical: 8.0,
               horizontal: 16.0,
             ),
-            child: Text(_activeProductId == null ? 'Purchased products' : productsTitle, style: GoogleFonts.montserrat(
+            child: Text(_activeProductIndex == null ? 'Purchased products' : _productsTitle, style: GoogleFonts.montserrat(
               textStyle: TextStyle(
                 color: Color(0xFF000000),
                 fontSize: 24.0,
@@ -253,14 +267,14 @@ class _HomeWidgetState extends State<HomeWidget> {
               vertical: 16.0,
               horizontal: 16.0,
             ),
-            child: _activeProductId != null ? Container(
+            child: _activeProductIndex != null ? Container(
               height: 203.0,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount: _products.length,
+                itemCount: _activeProducts.length,
                 itemBuilder: (BuildContext context, int index) {
                   return ProductWidget(
-                    product: _products[index],
+                    product: _activeProducts[index],
                   );
                 },
               ),
@@ -284,7 +298,7 @@ class _HomeWidgetState extends State<HomeWidget> {
       ),
     ];
 
-    if (_activeProductId != null) {
+    if (_activeProductIndex != null) {
       content += [
         SizedBox(height: 24.0),
         Padding(

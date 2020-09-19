@@ -150,7 +150,7 @@ class _HomeWidgetState extends State<HomeWidget> {
 
   List<Product> _recipes = [
     Product(
-      id: 1,
+      id: 0,
       title: 'Parmesan-Chips',
       subtitle: '20 Min.',
       image: 'assets/images/r-parmesan-chips.png',
@@ -159,7 +159,7 @@ class _HomeWidgetState extends State<HomeWidget> {
       ratingCount: 34,
     ),
     Product(
-      id: 2,
+      id: 1,
       title: 'Überbackene Nachos',
       subtitle: '20 Min.',
       image: 'assets/images/r-nachos.png',
@@ -168,7 +168,7 @@ class _HomeWidgetState extends State<HomeWidget> {
       ratingCount: 5,
     ),
     Product(
-      id: 3,
+      id: 2,
       title: 'Apéro-Dips',
       subtitle: '30 Min.',
       image: 'assets/images/r-apero-dips.png',
@@ -176,10 +176,65 @@ class _HomeWidgetState extends State<HomeWidget> {
       rating: 4.0,
       ratingCount: 8,
     ),
+    Product(
+      id: 3,
+      title: 'Schokoladenmousse mit Kaffee',
+      subtitle: '6 Std. 20 Min.',
+      image: 'assets/images/r-schokoladenmousse.png',
+      barcode: '',
+      rating: 5.0,
+      ratingCount: 18,
+    ),
+    Product(
+      id: 4,
+      title: 'Kaffee-Caramel-Trifle',
+      subtitle: '2 Std.',
+      image: 'assets/images/r-kaffee-caramel-trifle.png',
+      barcode: '',
+      rating: 5.0,
+      ratingCount: 12,
+    ),
+    Product(
+      id: 5,
+      title: 'Kaffee-Baklava mit Baumnüssen',
+      subtitle: '1 Std. 20 Min.',
+      image: 'assets/images/r-kaffee-baklava.png',
+      barcode: '',
+      rating: 4.0,
+      ratingCount: 13,
+    ),
+    Product(
+      id: 6,
+      title: 'Nuss-Granola mit Himbeeren',
+      subtitle: '50 Min.',
+      image: 'assets/images/r-nuss-granola-mit-himbeeren.png',
+      barcode: '',
+      rating: 4.0,
+      ratingCount: 6,
+    ),
+    Product(
+      id: 7,
+      title: 'Marshmallow-Crispies',
+      subtitle: '12 Std. 15 Min.',
+      image: 'assets/images/r-marshmallow-crispies.png',
+      barcode: '',
+      rating: 4.0,
+      ratingCount: 6,
+    ),
+    Product(
+      id: 8,
+      title: 'Caramel-Bananen-Bowl',
+      subtitle: '10 Min.',
+      image: 'assets/images/r-caramel-bananen-bowl.png',
+      barcode: '',
+      rating: 5.0,
+      ratingCount: 1,
+    ),
   ];
 
   int _activeProductIndex = null;
   List<Product> _activeProducts = [];
+  List<Product> _activeRecipes = [];
   String _productsTitle = 'Similar products';
 
   @override
@@ -223,6 +278,12 @@ class _HomeWidgetState extends State<HomeWidget> {
                       _products[8-1],
                       _products[1-1],
                     ];
+
+                    _activeRecipes = [
+                      _recipes[0],
+                      _recipes[1],
+                      _recipes[2],
+                    ];
                   } else if (barcode == '7617500193991') {
                     _productsTitle = 'Healthier products';
                     _activeProductIndex = 4-1;
@@ -230,6 +291,12 @@ class _HomeWidgetState extends State<HomeWidget> {
                     _activeProducts = [
                       _products[6-1],
                       _products[5-1],
+                    ];
+
+                    _activeRecipes = [
+                      _recipes[6],
+                      _recipes[7],
+                      _recipes[8],
                     ];
                   } else {
                     _productsTitle = 'More sustainable products';
@@ -239,6 +306,12 @@ class _HomeWidgetState extends State<HomeWidget> {
                       _products[12-1],
                       _products[11-1],
                       _products[2-1],
+                    ];
+
+                    _activeRecipes = [
+                      _recipes[3],
+                      _recipes[4],
+                      _recipes[5],
                     ];
                   }
 
@@ -334,10 +407,10 @@ class _HomeWidgetState extends State<HomeWidget> {
             height: 203.0,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: _recipes.length,
+              itemCount: _activeRecipes.length,
               itemBuilder: (BuildContext context, int index) {
                 return ProductWidget(
-                  product: _recipes[index],
+                  product: _activeRecipes[index],
                 );
               },
             ),

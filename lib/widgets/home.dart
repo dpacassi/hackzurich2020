@@ -329,6 +329,12 @@ class _HomeWidgetState extends State<HomeWidget> {
       body: ListView(
         children: content,
       ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: getThemeColor(),
+        onPressed: () {},
+        tooltip: 'Shopping cart',
+        child: Icon(Icons.shopping_cart),
+      )
     );
   }
 }

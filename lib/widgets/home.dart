@@ -29,7 +29,8 @@ class _HomeWidgetState extends State<HomeWidget> {
       price: 5.2,
       image: 'assets/images/chips.png',
       barcode: '',
-      stars: 4.1,
+      rating: 4.1,
+      ratingCount: 26,
     ),
     Product(
       id: 2,
@@ -38,7 +39,8 @@ class _HomeWidgetState extends State<HomeWidget> {
       price: 19.8,
       image: 'assets/images/coffee.png',
       barcode: '',
-      stars: 4.8,
+      rating: 4.8,
+      ratingCount: 20,
     ),
     Product(
       id: 3,
@@ -47,7 +49,8 @@ class _HomeWidgetState extends State<HomeWidget> {
       price: 1.7,
       image: 'assets/images/salad.png',
       barcode: '',
-      stars: 3.8,
+      rating: 3.8,
+      ratingCount: 4,
     ),
   ];
 

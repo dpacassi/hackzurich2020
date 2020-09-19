@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:fast_qr_reader_view/fast_qr_reader_view.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'package:hackzurich2020/models/product.dart';
 import 'package:hackzurich2020/widgets/camera.dart';
+import 'package:hackzurich2020/widgets/product.dart';
 
 class HomeWidget extends StatefulWidget {
   final List<CameraDescription> cameras;
@@ -60,7 +62,11 @@ class _HomeWidgetState extends State<HomeWidget> {
                   vertical: 8.0,
                   horizontal: 16.0,
                 ),
-                child: Text('Content'),
+                child: ProductWidget(product: Product(
+                  title: 'Gold Max Havelaar Milde Orange',
+                  subtitle: '1l',
+                  price: 1.95,
+                ),),
               ),
             ],
           ),

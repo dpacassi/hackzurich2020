@@ -35,3 +35,17 @@ lib/generated_plugin_registrant.dart
 
 # Exceptions to above rules.
 !/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
+
+# Env files.
+/.env
+**/ios/**/flutter_export_environment.sh
+
+# Google Firebase configuration.
+**/google-services.json
+**/GoogleService-Info.plist
+
+# Keystore information.
+android/key.properties
+
+# Ignore release bundles.
+android/app/release

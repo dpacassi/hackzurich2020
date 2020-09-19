@@ -20,6 +20,11 @@ dependencies:
   flutter:
     sdk: flutter
 
+  fast_qr_reader_view:
+    git:
+      url: git://github.com/SoftWyer/fast_qr_reader_view.git
+  firebase_auth: ^0.15.4
+
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2

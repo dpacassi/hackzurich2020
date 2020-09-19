@@ -54,10 +54,28 @@ class _CameraWidgetState extends State<CameraWidget> {
       return new Container();
     }
 
-    return new AspectRatio(
-        aspectRatio:
-        controller.value.aspectRatio,
-        child: new QRReaderPreview(controller)
+    final size = MediaQuery.of(context).size.width;
+
+    return Transform.scale(
+      scale: 1.0,
+      child: AspectRatio(
+        aspectRatio: 200.0 / 411.42857142857144,
+        child: OverflowBox(
+          alignment: Alignment.center,
+          child: FittedBox(
+            fit: BoxFit.fitWidth,
+            child: Container(
+              width: size,
+              height: size / controller.value.aspectRatio,
+              child: Stack(
+                children: <Widget>[
+                  QRReaderPreview(controller),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

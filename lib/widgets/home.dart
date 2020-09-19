@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:fast_qr_reader_view/fast_qr_reader_view.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'package:hackzurich2020/widgets/camera.dart';
 
@@ -27,33 +28,47 @@ class _HomeWidgetState extends State<HomeWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
       body: ListView(
         children: <Widget>[
           Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
+              Container(
+                color: Color(0xFFFF6600),
+                width: double.infinity,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(
+                    vertical: 8.0,
+                    horizontal: 16.0,
+                  ),
+                  child: Text(widget.title, style: GoogleFonts.montserrat(
+                    textStyle: TextStyle(
+                      color: Color(0xFFFFFFFF),
+                      fontSize: 24.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  )),
+                ),
+              ),
               Container(
                 width: double.infinity,
                 height: 200,
                 child: CameraWidget(cameras: widget.cameras),
               ),
-              Text(
-                'You have pushed the button this many times:',
-              ),
-              Text(
-                '$_counter',
-                style: Theme.of(context).textTheme.display1,
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  vertical: 8.0,
+                  horizontal: 16.0,
+                ),
+                child: Text('Content'),
               ),
             ],
           ),
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
+        onPressed: () {},
+        tooltip: 'Action',
         child: Icon(Icons.add),
       ),
     );

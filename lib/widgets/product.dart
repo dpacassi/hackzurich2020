@@ -21,9 +21,9 @@ class ProductWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Center(
-            child: Image.asset(product.image, height: 96.0),
+            child: Image.asset(product.image, height: product.price != null ? 96.0 : 128.0),
           ),
-          Padding(
+          product.price != null ? Padding(
             padding: const EdgeInsets.only(
               top: 8.0,
               bottom: 2.0,
@@ -35,7 +35,7 @@ class ProductWidget extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             )),
-          ),
+          ) : SizedBox(height: 2, width: 0),
           Text(product.title, style: GoogleFonts.openSans(
             textStyle: TextStyle(
               color: Color(0xFF000000),

@@ -53,6 +53,36 @@ class _HomeWidgetState extends State<HomeWidget> {
     ),
   ];
 
+  List<Product> _recipes = [
+    Product(
+      id: 1,
+      title: 'Parmesan-Chips',
+      subtitle: '20 Min.',
+      image: 'assets/images/r-parmesan-chips.png',
+      barcode: '',
+      rating: 4.0,
+      ratingCount: 34,
+    ),
+    Product(
+      id: 2,
+      title: 'Überbackene Nachos',
+      subtitle: '20 Min.',
+      image: 'assets/images/r-nachos.png',
+      barcode: '',
+      rating: 4.0,
+      ratingCount: 5,
+    ),
+    Product(
+      id: 3,
+      title: 'Apéro-Dips',
+      subtitle: '30 Min.',
+      image: 'assets/images/r-apero-dips.png',
+      barcode: '',
+      rating: 4.0,
+      ratingCount: 8,
+    ),
+  ];
+
   int _activeProductId = null;
 
   @override
@@ -176,10 +206,10 @@ class _HomeWidgetState extends State<HomeWidget> {
             height: 203.0,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: _products.length,
+              itemCount: _recipes.length,
               itemBuilder: (BuildContext context, int index) {
                 return ProductWidget(
-                  product: _products[index],
+                  product: _recipes[index],
                 );
               },
             ),

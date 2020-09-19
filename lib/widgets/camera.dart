@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:fast_qr_reader_view/fast_qr_reader_view.dart';
 
 import 'package:hackzurich2020/models/product.dart';
+import 'package:hackzurich2020/shared/builders.dart';
 
 class CameraWidget extends StatefulWidget {
   final List<CameraDescription> cameras;
@@ -28,7 +29,7 @@ class _CameraWidgetState extends State<CameraWidget> {
       BotToast.showSimpleNotification(
         title: 'Successfully scanned: ' + product.title,
         duration: const Duration(seconds: 4),
-        closeIcon: Icon(Icons.close, color: Color(0xFFFF6600)),
+        closeIcon: Icon(Icons.close, color: getThemeColor()),
       );
       widget.setActiveProductId(product.id);
       new Future.delayed(const Duration(seconds: 3), controller.startScanning);

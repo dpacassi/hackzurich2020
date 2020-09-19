@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
 import 'package:fast_qr_reader_view/fast_qr_reader_view.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wakelock/wakelock.dart';
 
 import 'package:hackzurich2020/models/product.dart';
+import 'package:hackzurich2020/shared/builders.dart';
 import 'package:hackzurich2020/widgets/camera.dart';
 import 'package:hackzurich2020/widgets/product.dart';
 
@@ -90,12 +92,22 @@ class _HomeWidgetState extends State<HomeWidget> {
   Widget build(BuildContext context) {
     Wakelock.enable();
 
+    String productsTitle = '';
+
+    if (DotEnv().env['APP_NAME'] == '1') {
+      productsTitle = 'More sustainable products';
+    } else if (DotEnv().env['APP_NAME'] == '2') {
+      productsTitle = 'Healthier products';
+    } else if (DotEnv().env['APP_NAME'] == '3') {
+      productsTitle = 'Better deals';
+    }
+
     List<Widget> content = [
       Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Container(
-            color: Color(0xFFFF6600),
+            color: getThemeColor(),
             width: double.infinity,
             child: Padding(
               padding: EdgeInsets.symmetric(
@@ -118,7 +130,8 @@ class _HomeWidgetState extends State<HomeWidget> {
               cameras: widget.cameras,
               setActiveProductId: (int newProductId) {
                 setState(() {
-                  _activeProductId = newProductId;
+                  //_activeProductId = newProductId;
+                  _activeProductId = int.parse(DotEnv().env['SCANNED_PRODUCT_ID']);
                 });
               },
               findProductByBarcode: (String barcode) {
@@ -132,7 +145,7 @@ class _HomeWidgetState extends State<HomeWidget> {
               vertical: 8.0,
               horizontal: 16.0,
             ),
-            child: Text(_activeProductId == null ? 'Purchased products' : 'More sustainable products', style: GoogleFonts.montserrat(
+            child: Text(_activeProductId == null ? 'Purchased products' : productsTitle, style: GoogleFonts.montserrat(
               textStyle: TextStyle(
                 color: Color(0xFF000000),
                 fontSize: 24.0,

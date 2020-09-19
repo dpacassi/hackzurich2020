@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
 
 import 'package:hackzurich2020/models/product.dart';
+import 'package:hackzurich2020/shared/builders.dart';
 
 class ProductWidget extends StatelessWidget {
   final Product product;
@@ -62,8 +63,8 @@ class ProductWidget extends StatelessWidget {
                 rating: product.rating,
                 size: 16.0,
                 isReadOnly: true,
-                color: Color(0xFFFF6600),
-                borderColor: Color(0xFFFF6600),
+                color: getThemeColor(),
+                borderColor: getThemeColor(),
                 spacing: 0.0,
               ),
               SizedBox(width: 4.0),

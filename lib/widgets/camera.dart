@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:bot_toast/bot_toast.dart';
 
 import 'package:flutter/material.dart';
 import 'package:fast_qr_reader_view/fast_qr_reader_view.dart';
@@ -20,10 +21,11 @@ class _CameraWidgetState extends State<CameraWidget> {
   void initState() {
     super.initState();
     controller = new QRReaderController(widget.cameras[0], ResolutionPreset.high, [CodeFormat.ean13], (dynamic value){
+      BotToast.showSimpleNotification(title: 'Scanned barcode: ' + value, duration: const Duration(seconds: 4));
       print(value); // the result!
       // ... do something
-      // wait 3 seconds then start scanning again.
-      new Future.delayed(const Duration(seconds: 3), controller.startScanning);
+      // wait 1 seconds then start scanning again.
+      new Future.delayed(const Duration(seconds: 1), controller.startScanning);
     });
     controller.initialize().then((_) {
       if (!mounted) {

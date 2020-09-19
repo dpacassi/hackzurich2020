@@ -22,13 +22,19 @@ class ProductWidget extends StatelessWidget {
           Center(
             child: Image.asset(product.image, height: 96.0),
           ),
-          Text(product.getFormattedPrice(), style: GoogleFonts.montserrat(
-            textStyle: TextStyle(
-              color: Color(0xFF000000),
-              fontSize: 24.0,
-              fontWeight: FontWeight.bold,
+          Padding(
+            padding: const EdgeInsets.only(
+              top: 8.0,
+              bottom: 2.0,
             ),
-          )),
+            child: Text(product.getFormattedPrice(), style: GoogleFonts.montserrat(
+              textStyle: TextStyle(
+                color: Color(0xFF000000),
+                fontSize: 24.0,
+                fontWeight: FontWeight.bold,
+              ),
+            )),
+          ),
           Text(product.title, style: GoogleFonts.openSans(
             textStyle: TextStyle(
               color: Color(0xFF000000),

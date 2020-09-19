@@ -5,6 +5,7 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:hackzurich2020/models/product.dart';
+import 'package:hackzurich2020/widgets/camera.dart';
 import 'package:hackzurich2020/widgets/product.dart';
 
 class HomeWidget extends StatefulWidget {
@@ -28,6 +29,7 @@ class _HomeWidgetState extends State<HomeWidget> {
       price: 5.2,
       image: 'assets/images/chips.png',
       barcode: '',
+      stars: 4.1,
     ),
     Product(
       id: 2,
@@ -36,6 +38,7 @@ class _HomeWidgetState extends State<HomeWidget> {
       price: 19.8,
       image: 'assets/images/coffee.png',
       barcode: '',
+      stars: 4.8,
     ),
     Product(
       id: 3,
@@ -44,6 +47,7 @@ class _HomeWidgetState extends State<HomeWidget> {
       price: 1.7,
       image: 'assets/images/salad.png',
       barcode: '',
+      stars: 3.8,
     ),
   ];
 
@@ -90,11 +94,28 @@ class _HomeWidgetState extends State<HomeWidget> {
                   vertical: 8.0,
                   horizontal: 16.0,
                 ),
+                child: Text('Purchased products', style: GoogleFonts.montserrat(
+                  textStyle: TextStyle(
+                    color: Color(0xFF000000),
+                    fontSize: 24.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                )),
+              ),
+              Divider(
+                color: Color(0xFFdad7d4),
+                height: 1.0,
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  vertical: 16.0,
+                  horizontal: 16.0,
+                ),
                 child: StaggeredGridView.countBuilder(
                   crossAxisCount: 2,
                   itemCount: _products.length,
                   staggeredTileBuilder: (int index) => StaggeredTile.fit(1),
-                  mainAxisSpacing: 8.0,
+                  mainAxisSpacing: 16.0,
                   crossAxisSpacing: 8.0,
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),

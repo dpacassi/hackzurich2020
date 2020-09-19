@@ -6,6 +6,7 @@ class Product {
   String subtitle;
   String image;
   double price;
+  double stars;
   String barcode;
 
   Product({
@@ -14,6 +15,7 @@ class Product {
     this.subtitle,
     this.image,
     this.price,
+    this.stars,
     this.barcode,
   });
 

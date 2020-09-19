@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:bot_toast/bot_toast.dart';
 import 'package:fast_qr_reader_view/fast_qr_reader_view.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
@@ -331,7 +332,8 @@ class _HomeWidgetState extends State<HomeWidget> {
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: getThemeColor(),
-        onPressed: () {},
+        onPressed: () {
+        },
         tooltip: 'Shopping cart',
         child: Icon(Icons.shopping_cart),
       )

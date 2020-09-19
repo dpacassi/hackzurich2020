@@ -4,12 +4,14 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:fast_qr_reader_view/fast_qr_reader_view.dart';
 
+import 'package:hackzurich2020/models/product.dart';
 
 class CameraWidget extends StatefulWidget {
   final List<CameraDescription> cameras;
   final Function setActiveProductId;
+  final Function findProductByBarcode;
 
-  CameraWidget({ this.cameras, this.setActiveProductId });
+  CameraWidget({ this.cameras, this.setActiveProductId, this.findProductByBarcode });
 
   @override
   _CameraWidgetState createState() => new _CameraWidgetState();
@@ -21,13 +23,15 @@ class _CameraWidgetState extends State<CameraWidget> {
   @override
   void initState() {
     super.initState();
-    controller = new QRReaderController(widget.cameras[0], ResolutionPreset.high, [CodeFormat.ean13], (dynamic value){
-      BotToast.showSimpleNotification(title: 'Scanned barcode: ' + value, duration: const Duration(seconds: 4));
-      widget.setActiveProductId(1);
-      print(value); // the result!
-      // ... do something
-      // wait 1 seconds then start scanning again.
-      new Future.delayed(const Duration(seconds: 1), controller.startScanning);
+    controller = new QRReaderController(widget.cameras[0], ResolutionPreset.high, [CodeFormat.ean13], (dynamic value) {
+      Product product = widget.findProductByBarcode(value);
+      BotToast.showSimpleNotification(
+        title: 'Successfully scanned: ' + product.title,
+        duration: const Duration(seconds: 4),
+        closeIcon: Icon(Icons.close, color: Color(0xFFFF6600)),
+      );
+      widget.setActiveProductId(product.id);
+      new Future.delayed(const Duration(seconds: 3), controller.startScanning);
     });
     controller.initialize().then((_) {
       if (!mounted) {

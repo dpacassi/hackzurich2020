@@ -48,8 +48,7 @@ class _CameraWidgetState extends State<CameraWidget> {
 
     return new AspectRatio(
         aspectRatio:
-        //controller.value.aspectRatio,
-        1.0,
+        controller.value.aspectRatio,
         child: new QRReaderPreview(controller)
     );
   }

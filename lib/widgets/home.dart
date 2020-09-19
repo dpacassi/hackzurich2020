@@ -294,9 +294,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                     ];
 
                     _activeRecipes = [
-                      _recipes[6],
                       _recipes[7],
                       _recipes[8],
+                      _recipes[6],
                     ];
                   } else {
                     _productsTitle = 'More sustainable products';

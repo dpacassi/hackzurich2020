@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:bot_toast/bot_toast.dart';
 import 'package:fast_qr_reader_view/fast_qr_reader_view.dart';
@@ -22,6 +23,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
+
     return BotToastInit(
       child: MaterialApp(
         navigatorObservers: [BotToastNavigatorObserver()],

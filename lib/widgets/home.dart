@@ -196,7 +196,7 @@ class _HomeWidgetState extends State<HomeWidget> {
     ),
     Product(
       id: 5,
-      title: 'Kaffee-Baklava mit Baumnüssen',
+      title: 'Kaffee-Baklava',
       subtitle: '1 Std. 20 Min.',
       image: 'assets/images/r-kaffee-baklava.png',
       barcode: '',
@@ -309,9 +309,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                     ];
 
                     _activeRecipes = [
-                      _recipes[3],
                       _recipes[4],
                       _recipes[5],
+                      _recipes[3],
                     ];
                   }
 

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:google_fonts/google_fonts.dart';
+
 import 'package:hackzurich2020/models/product.dart';
 
 class ProductWidget extends StatelessWidget {
@@ -17,9 +19,30 @@ class ProductWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(product.title),
-          Text(product.subtitle),
-          Text(product.price.toString()),
+          Center(
+            child: Image.asset(product.image, height: 96.0),
+          ),
+          Text(product.getFormattedPrice(), style: GoogleFonts.montserrat(
+            textStyle: TextStyle(
+              color: Color(0xFF000000),
+              fontSize: 24.0,
+              fontWeight: FontWeight.bold,
+            ),
+          )),
+          Text(product.title, style: GoogleFonts.openSans(
+            textStyle: TextStyle(
+              color: Color(0xFF000000),
+              fontSize: 12.0,
+              fontWeight: FontWeight.bold,
+            ),
+          )),
+          Text(product.subtitle, style: GoogleFonts.openSans(
+            textStyle: TextStyle(
+              color: Color(0xFF000000),
+              fontSize: 12.0,
+              fontWeight: FontWeight.normal,
+            ),
+          )),
         ],
       ),
     );

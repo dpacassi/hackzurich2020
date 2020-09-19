@@ -30,6 +30,7 @@ class _HomeWidgetState extends State<HomeWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFFFFFFFF),
       body: ListView(
         children: <Widget>[
           Column(
@@ -55,7 +56,8 @@ class _HomeWidgetState extends State<HomeWidget> {
               Container(
                 width: double.infinity,
                 height: 200,
-                child: CameraWidget(cameras: widget.cameras),
+                //child: CameraWidget(cameras: widget.cameras),
+                child: Text('Camera'),
               ),
               Padding(
                 padding: EdgeInsets.symmetric(
@@ -63,9 +65,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                   horizontal: 16.0,
                 ),
                 child: ProductWidget(product: Product(
-                  title: 'Gold Max Havelaar Milde Orange',
-                  subtitle: '1l',
-                  price: 1.95,
+                  title: 'Sélection Salt & Pepper Chips',
+                  subtitle: '150g',
+                  price: 5.20,
+                  image: 'assets/images/chips.png',
                 ),),
               ),
             ],

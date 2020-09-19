@@ -35,7 +35,7 @@ class ProductNotificationWidget extends StatelessWidget {
                 Text(product.title, style: GoogleFonts.montserrat(
                   textStyle: TextStyle(
                     color: Color(0xFF000000),
-                    fontSize: 18.0,
+                    fontSize: 16.0,
                     fontWeight: FontWeight.bold,
                   ),
                 )),

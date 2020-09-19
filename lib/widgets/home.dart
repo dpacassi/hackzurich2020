@@ -11,6 +11,7 @@ import 'package:hackzurich2020/models/product.dart';
 import 'package:hackzurich2020/shared/builders.dart';
 import 'package:hackzurich2020/widgets/camera.dart';
 import 'package:hackzurich2020/widgets/product.dart';
+import 'package:hackzurich2020/widgets/product_notification.dart';
 
 class HomeWidget extends StatefulWidget {
   final List<CameraDescription> cameras;
@@ -215,31 +216,37 @@ class _HomeWidgetState extends State<HomeWidget> {
                 setState(() {
                   if (barcode == '7617027064590') {
                     _productsTitle = 'Better deals';
-                    _activeProductIndex = 7-6;
+                    _activeProductIndex = 7-1;
 
                     _activeProducts = [
-                      _products[1-1],
-                      _products[8-1],
                       _products[9-1],
+                      _products[8-1],
+                      _products[1-1],
                     ];
                   } else if (barcode == '7617500193991') {
                     _productsTitle = 'Healthier products';
                     _activeProductIndex = 4-1;
 
                     _activeProducts = [
-                      _products[5-1],
                       _products[6-1],
+                      _products[5-1],
                     ];
                   } else {
                     _productsTitle = 'More sustainable products';
                     _activeProductIndex = 10-1;
 
                     _activeProducts = [
-                      _products[11-1],
                       _products[12-1],
+                      _products[11-1],
                       _products[2-1],
                     ];
                   }
+
+                  BotToast.showCustomNotification(toastBuilder: (cancel) {
+                    return ProductNotificationWidget(
+                      product: _products[_activeProductIndex],
+                    );
+                  }, duration: const Duration(seconds: 4));
                 });
               },
             ),

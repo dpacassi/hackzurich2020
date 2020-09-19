@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:fast_qr_reader_view/fast_qr_reader_view.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:wakelock/wakelock.dart';
 
 import 'package:hackzurich2020/models/product.dart';
 import 'package:hackzurich2020/widgets/camera.dart';
@@ -87,6 +88,8 @@ class _HomeWidgetState extends State<HomeWidget> {
 
   @override
   Widget build(BuildContext context) {
+    Wakelock.enable();
+
     List<Widget> content = [
       Column(
         crossAxisAlignment: CrossAxisAlignment.start,

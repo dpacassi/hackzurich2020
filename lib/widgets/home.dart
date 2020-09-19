@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'package:fast_qr_reader_view/fast_qr_reader_view.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:hackzurich2020/models/product.dart';
-import 'package:hackzurich2020/widgets/camera.dart';
 import 'package:hackzurich2020/widgets/product.dart';
 
 class HomeWidget extends StatefulWidget {
@@ -20,6 +20,32 @@ class HomeWidget extends StatefulWidget {
 
 class _HomeWidgetState extends State<HomeWidget> {
   int _counter = 0;
+  List<Product> _products = [
+    Product(
+      id: 1,
+      title: 'Sélection Salt & Pepper Chips',
+      subtitle: '150g',
+      price: 5.2,
+      image: 'assets/images/chips.png',
+      barcode: '',
+    ),
+    Product(
+      id: 2,
+      title: 'Delizio Lungo Fortissimo 48 Kapseln',
+      subtitle: '288g',
+      price: 19.8,
+      image: 'assets/images/coffee.png',
+      barcode: '',
+    ),
+    Product(
+      id: 3,
+      title: 'Kopfsalat rot',
+      subtitle: '',
+      price: 1.7,
+      image: 'assets/images/salad.png',
+      barcode: '',
+    ),
+  ];
 
   void _incrementCounter() {
     setState(() {
@@ -64,12 +90,21 @@ class _HomeWidgetState extends State<HomeWidget> {
                   vertical: 8.0,
                   horizontal: 16.0,
                 ),
-                child: ProductWidget(product: Product(
-                  title: 'Sélection Salt & Pepper Chips',
-                  subtitle: '150g',
-                  price: 5.20,
-                  image: 'assets/images/chips.png',
-                ),),
+                child: StaggeredGridView.countBuilder(
+                  crossAxisCount: 2,
+                  itemCount: _products.length,
+                  staggeredTileBuilder: (int index) => StaggeredTile.fit(1),
+                  mainAxisSpacing: 8.0,
+                  crossAxisSpacing: 8.0,
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  padding: EdgeInsets.zero,
+                  itemBuilder: (BuildContext context, int index) {
+                    return ProductWidget(
+                      product: _products[index],
+                    );
+                  }
+                ),
               ),
             ],
           ),

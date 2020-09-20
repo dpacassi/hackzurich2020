@@ -10,6 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
 
+  audioplayers: ^0.16.1
   bot_toast: 2.2.1
   flutter_dotenv: ^2.1.0
   fast_qr_reader_view:
@@ -33,3 +34,4 @@ flutter:
     - .env
     - assets/fonts/
     - assets/images/
+    - assets/sounds/

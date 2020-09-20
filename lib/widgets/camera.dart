@@ -1,12 +1,8 @@
 import 'dart:async';
-import 'package:bot_toast/bot_toast.dart';
-
 import 'package:flutter/material.dart';
-import 'package:fast_qr_reader_view/fast_qr_reader_view.dart';
 
-import 'package:hackzurich2020/models/product.dart';
-import 'package:hackzurich2020/shared/builders.dart';
-import 'package:hackzurich2020/widgets/product_notification.dart';
+import 'package:audioplayers/audio_cache.dart';
+import 'package:fast_qr_reader_view/fast_qr_reader_view.dart';
 
 class CameraWidget extends StatefulWidget {
   final List<CameraDescription> cameras;
@@ -20,11 +16,15 @@ class CameraWidget extends StatefulWidget {
 
 class _CameraWidgetState extends State<CameraWidget> {
   QRReaderController controller;
+  final player = AudioCache(prefix: 'assets/sounds/');
 
   @override
   void initState() {
     super.initState();
+    player.load('beep.mp3');
+
     controller = new QRReaderController(widget.cameras[0], ResolutionPreset.high, [CodeFormat.ean13], (dynamic value) {
+      player.play('beep.mp3');
       widget.setActiveProductId(value);
       new Future.delayed(const Duration(seconds: 3), controller.startScanning);
     });
@@ -40,6 +40,7 @@ class _CameraWidgetState extends State<CameraWidget> {
   @override
   void dispose() {
     controller?.dispose();
+    player.clearCache();
     super.dispose();
   }
 
